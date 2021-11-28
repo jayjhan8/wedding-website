@@ -312,6 +312,10 @@ header {
   margin: 0 auto;
   transition: padding 300ms ease-in-out;
 
+  &.navigation-header {
+    padding: 15px;
+  }
+
   a {
     color: $txt-light;
     text-transform: uppercase;
@@ -325,10 +329,12 @@ header {
     display: inline-block;
   }
   .logo img {
-    height: 19px;
+    height: 60px;
+    -webkit-filter: invert(1) drop-shadow(0 0 5px black);
+    filter: invert(1) drop-shadow(0 0 5px black);
   }
   ul.primary-nav {
-    margin: 0 0 0 75px;
+    margin: 0 0 0 30px;
     padding: 0;
 
     li {
