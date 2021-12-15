@@ -1,6 +1,6 @@
 @media screen and (max-width: 1200px) {
     header {
-        width: 90%;
+        /* width: 90%; */
         margin: 0 auto;
     }
 
@@ -20,7 +20,7 @@
 /* Responsive nav kicks in */
 @media screen and (max-width: 991px) {
     header {
-        width: 90%;
+        /* width: 90%; */
         padding-left: 25px;
     }
 
@@ -288,14 +288,13 @@
     footer .footer-links {
         margin: 50px 0 50px 0;
     }
-
 }
 
 @media screen and (max-width: 480px) {
     .hero .hero-content {
         padding-top: 110%;
     }
-    
+
     .hero .hero-content img {
         width: 65%;
     }
