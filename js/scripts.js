@@ -1,5 +1,48 @@
 $(document).ready(function () {
 
+    /********************** RSVP **********************/
+    $('#code-form').on('submit', function (e) {
+        e.preventDefault();
+
+        if (!($('#invite_code').val() in groups)) {
+            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
+        } else {
+            var group = groups[$('#invite_code').val()]
+            $('#rsvp-name').html('Hello ' + group.names.join(' and ') + '!');
+            $('#rsvp-section').html(rsvp_markup(group.names, group.after));
+
+            $('#rsvp-form').on('submit', function (e) {
+                e.preventDefault();
+                var data = $(this).serialize();
+
+                $('#alert-wrapper2').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
+
+                    // TODO: CLEANUPPPPPP no cors
+                    fetch("https://script.google.com/macros/s/AKfycbxwR6mGxchaTK0dygsO0sod3-SuAWcjIaH2yFqCnmADOUk7uzWMSkx0OFaxZfht6WABaQ/exec?" + data, {
+                        method: 'POST',
+                        body: data,
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8',
+                        },
+                        mode: 'no-cors'
+                    })
+                    .then(function (data) {
+                        if (data.ok) {
+                            if (data.result === "error") {
+                                $('#alert-wrapper2').html(alert_markup('danger', data.message));
+                            } else {
+                                $('#alert-wrapper2').html('');
+                                $('#rsvp-modal').modal('show');
+                            }
+                        } else {
+                            $('#alert-wrapper2').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+                        }
+                    })
+            });
+
+        }
+    });
+
     /***************** Waypoints ******************/
 
     $('.wp1').waypoint(function () {
@@ -161,7 +204,7 @@ $(document).ready(function () {
 
 
     /********************** Embed youtube video *********************/
-    $('.player').YTPlayer();
+    // $('.player').YTPlayer();
 
 
     /********************** Toggle Map Content **********************/
@@ -206,35 +249,34 @@ $(document).ready(function () {
     $('#add-to-cal').html(myCalendar);
 
 
-    /********************** RSVP **********************/
-    $('#rsvp-form').on('submit', function (e) {
-        e.preventDefault();
-        var data = $(this).serialize();
+    // $('#rsvp-form').on('submit', function (e) {
+        // e.preventDefault();
+        // var data = $(this).serialize();
 
-        $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
+        // $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-        if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
-            && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
-            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
-        } else {
-            $.post('https://script.google.com/macros/s/AKfycbzUqz44wOat0DiGjRV1gUnRf4HRqlRARWggjvHKWvqniP7eVDG-/exec', data)
-                .done(function (data) {
-                    console.log(data);
-                    if (data.result === "error") {
-                        $('#alert-wrapper').html(alert_markup('danger', data.message));
-                    } else {
-                        $('#alert-wrapper').html('');
-                        $('#rsvp-modal').modal('show');
-                    }
-                })
-                .fail(function (data) {
-                    console.log(data);
-                    $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
-                });
-        }
-    });
-
+        // if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
+            // && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
+            // $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
+        // } else {
+            // $.post('https://script.google.com/macros/s/AKfycbzUqz44wOat0DiGjRV1gUnRf4HRqlRARWggjvHKWvqniP7eVDG-/exec', data)
+                // .done(function (data) {
+                    // console.log(data);
+                    // if (data.result === "error") {
+                        // $('#alert-wrapper').html(alert_markup('danger', data.message));
+                    // } else {
+                        // $('#alert-wrapper').html('');
+                        // $('#rsvp-modal').modal('show');
+                    // }
+                // })
+                // .fail(function (data) {
+                    // console.log(data);
+                    // $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+                // });
+        // }
+    // });
 });
+
 
 /********************** Extras **********************/
 
@@ -265,6 +307,85 @@ function initBBSRMap() {
         position: la_fiesta,
         map: map
     });
+}
+// <div class="row">
+  // <div class="col-md-12">
+    // <h3>What are you waiting for? </h3>
+    // <form class="gform" id="rsvp-form" class="rsvp-form" action="" method="POST">
+      // <table class="responsive-table">
+        // <tr class='table-header'>
+          // <th class="col-1">Name</th>
+          // <th class="col-2">Will you be joining us on 4/23/22?</th>
+          // <th class="col-3">Are you fully vaccinated against COVID-19?</th>
+          // <th class="col-4">Will you have received your COVID-19 booster by 4/23/22?</th>
+          // <th class="col-5">Will you be joining us for the after party?</th>
+          // <th class="col-6">Do you have any dietary restrictions?</th>
+        // </tr>
+        // <tr >
+          // <td class="col-1">
+            // <input name="name" class="" placeholder="Your name" value="default" required>
+          // </td>
+          // <td class="col-2">
+              // <select name="wedding-rsvp">
+                  // <option value="">---</option>
+                  // <option value="yes">Yes</option>
+                  // <option value="no">No</option>
+              // </select>
+          // </td>
+          // <td class="col-3">
+              // <select name="vaccinated">
+                  // <option value="">---</option>
+                  // <option value="yes">Yes</option>
+                  // <option value="no">No</option>
+              // </select>
+          // </td>
+          // <td class="col-4">
+              // <select name="booster">
+                  // <option value="">---</option>
+                  // <option value="yes">Yes</option>
+                  // <option value="no">No</option>
+              // </select>
+          // </td>
+          // <td class="col-5">
+              // <select name="after-party">
+                  // <option value="">---</option>
+                  // <option value="yes">Yes</option>
+                  // <option value="no">No</option>
+              // </select>
+          // </td>
+          // <td class="col-6">
+            // <input name="diet" type="text" class="" placeholder="None">
+          // </td>
+        // </tr>
+      // </table>
+      // <div class="row"> 
+        // <div class="col-md-12" id="alert-wrapper2"> </div>
+      // </div> 
+      // <button class="btn-fill rsvp-btn"> Let's go!</button>
+    // </form> 
+  // </div> 
+// </div>
+function rsvp_name_dropdown_table_row_markup(name, shouldInviteToAfter) {
+    var afterPartyClass = 'hidden';
+    if (shouldInviteToAfter) {
+        afterPartyClass = '';
+    }
+    return '<tr> <td class="col-1"> <input name="name" class="" placeholder="Your name" value="' + name + '" required> </td> <td class="col-2"> <select name="wedding-rsvp"> <option value="">---</option> <option value="yes">Yes</option> <option value="no">No</option> </select> </td> <td class="col-3"> <select name="vaccinated"> <option value="">---</option> <option value="yes">Yes</option> <option value="no">No</option> </select> </td> <td class="col-4"> <select name="booster"> <option value="">---</option> <option value="yes">Yes</option> <option value="no">No</option> </select> </td> <td class="col-5 ' + afterPartyClass + '"> <select name="after-party"> <option value="">---</option> <option value="yes">Yes</option> <option value="no">No</option> </select> </td> <td class="col-6"> <input name="diet" type="text" class="" placeholder="None"> </td> </tr>';
+}
+
+function rsvp_markup(groupNames, afterParty) {
+    var groupNameMarkUp = groupNames.map(function (name) {
+        return rsvp_name_dropdown_table_row_markup(name, afterParty);
+    })
+
+    var afterPartyClass = 'hidden';
+    if (afterParty) {
+        afterPartyClass = '';
+    }
+
+    var tableHeaders = '<tr class="table-header"> <th class="col-1">Name</th> <th class="col-2">Will you be joining us on 4/23/22?</th> <th class="col-3">Are you fully vaccinated against COVID-19?</th> <th class="col-4">Will you have received your COVID-19 booster by 4/23/22?</th> <th class="col-5 ' + afterPartyClass + '">Will you be joining us for the <a href="#after-party-modal" data-target="#after-party-modal" data-toggle="modal">after party?</a></th> <th class="col-6">Do you have any dietary restrictions?</th> </tr>';
+
+    return '<div class="row"> <div class="col-md-12"> <h3>What are you waiting for? </h3> <form class="gform" id="rsvp-form" class="rsvp-form" action="" method="POST"> <table class="responsive-table">' + tableHeaders  + groupNameMarkUp + '</table> <div class="row"> <div class="col-md-12" id="alert-wrapper2"> </div> </div> <button class="btn-fill rsvp-btn"> Let\'s go!</button> </form> </div> </div>';
 }
 
 // alert_markup
@@ -489,4 +610,251 @@ var MD5 = function (string) {
     var temp = WordToHex(a) + WordToHex(b) + WordToHex(c) + WordToHex(d);
 
     return temp.toLowerCase();
+};
+
+var groups = {
+  "Jenny1": {
+      after: true,
+      names: ['Jenny Han'],
+  },
+  "Rachel1": {
+      after: true,
+      names: ['Rachel Han'],
+  },
+  "Paul1": {
+      after: true,
+      names: ['Paul Han'],
+  },
+  "VeronicaKeylor2": {
+      after: true,
+      names: ['Veronica Choe, Keylor'],
+  },
+  "Michelle1": {
+      after: true,
+      names: ['Michelle Roh'],
+  },
+  "Ashley1": {
+      after: true,
+      names: ['Ashley Cho'],
+  },
+  "Alice1": {
+      after: true,
+      names: ['Alice Kim'],
+  },
+  "JonSana2": {
+      after: true,
+      names: ['Jon Lee', 'Sana Suh Lee'],
+  },
+  "JoeTina2": {
+      after: true,
+      names: ['Joe Lee', 'Tina Suh'],
+  },
+  "SamChristina2": {
+      after: false,
+      names: ['Sam Suh', 'Christina Suh'],
+  },
+  "Timothy1": {
+      after: true,
+      names: ['Timothy Suh'],
+  },
+  "JaeDeborah4": {
+      after: false,
+      names: ['Jae', 'Deborah', 'Joanna', 'Amy Lee'],
+  },
+  "AndrewLaura5": {
+      after: false,
+      names: ['Andrew', 'Laura', 'Elsie', 'Claire', 'Abigail Suh'],
+  },
+  "DavidJoyce3": {
+      after: false,
+      names: ['David', 'Joyce', 'Abigail Rootselaar'],
+  },
+  "JosephYoonjung3": {
+      after: false,
+      names: ['Joseph', 'Yoonjung', 'Ethan Kim'],
+  },
+  "Rebecca1": {
+      after: true,
+      names: ['Rebecca Suh'],
+  },
+  "Sarah1": {
+      after: false,
+      names: ['Sarah Lim'],
+  },
+  "CedricSunny2": {
+      after: false,
+      names: ['Cedric Choi', 'Sunny Park Choi'],
+  },
+  "Stephen1": {
+      after: false,
+      names: ['Stephen Jon'],
+  },
+  "Seungjin1": {
+      after: false,
+      names: ['Seungjin Yang'],
+  },
+  "SamSojung2": {
+      after: false,
+      names: ['Sam Kim', 'Sojung Kim'],
+  },
+  "JonnyVicky2": {
+      after: false,
+      names: ['Jonny Chung', 'Vicky Chung'],
+  },
+  "ChrisChristine2": {
+      after: true,
+      names: ['Chris Oh', 'Christina Ha'],
+  },
+  "Jane1": {
+      after: true,
+      names: ['Jane Lim'],
+  },
+  "Minji1": {
+      after: true,
+      names: ['Minji Kim'],
+  },
+  "MarkCathy2": {
+      after: true,
+      names: ['Mark Zheng', 'Cathy Zheng'],
+  },
+  "AndrewCaitlin2": {
+      after: true,
+      names: ['Andrew Vu', 'Caitlin Caplinger'],
+  },
+  "FelixCamilla2": {
+      after: true,
+      names: ['Felix Zhu', 'Camilla Zhao'],
+  },
+  "Kiera1": {
+      after: true,
+      names: ['Kiera Krash'],
+  },
+  "Christina1": {
+      after: true,
+      names: ['Christina Yan'],
+  },
+  "Danielle1": {
+      after: true,
+      names: ['Danielle Chen'],
+  },
+  "RobEvelyn2": {
+      after: true,
+      names: ['Rob Handler', 'Evelyn Huang'],
+  },
+  "Grace1": {
+      after: true,
+      names: ['Grace Wan'],
+  },
+  "SamRuth2": {
+      after: true,
+      names: ['Sam Li', 'Ruth Wang'],
+  },
+  "JoshCaron2": {
+      after: true,
+      names: ['Josh Song', 'Caron Song'],
+  },
+  "BenTiffany2": {
+      after: true,
+      names: ['Ben Sha', 'Tiffany Sha'],
+  },
+  "Sindy1": {
+      after: true,
+      names: ['Sindy Wu'],
+  },
+  "Sharon1": {
+      after: true,
+      names: ['Sharon Shen'],
+  },
+  "Wilson1": {
+      after: true,
+      names: ['Wilson Lam'],
+  },
+  "Jason1": {
+      after: true,
+      names: ['Jason Pao'],
+  },
+  "MikeSoobin2": {
+      after: false,
+      names: ['Mike Kim' , 'Soobin Kim'],
+  },
+  "DanielLydia2": {
+      after: false,
+      names: ['Daniel Son', 'Lydia Son'],
+  },
+  "PKAndrea2": {
+      after: true,
+      names: ['PK', 'Andrea Kim'],
+  },
+  "SamHannah2": {
+      after: true,
+      names: ['Sam Alcoba', 'Hannah Alcoba'],
+  },
+  "JeffHallie2": {
+      after: true,
+      names: ['Jeff Gao', 'Hallie Gao'],
+  },
+  "Jessie1": {
+      after: true,
+      names: ['Jessie Schrantz'],
+  },
+  "Cedric1": {
+      after: true,
+      names: ['Cedric Lee'],
+  },
+  "Ryan1": {
+      after: true,
+      names: ['RyanChavez'],
+  },
+  "YoungAlison3": {
+      after: false,
+      names: ['Young Suh', 'Alison Suh', 'Christian Suh'],
+  },
+  "KyungMaria2": {
+      after: false,
+      names: ['Kyung Nam', 'Maria Nam'],
+  },
+  "SteveJoan2": {
+      after: false,
+      names: ['Steve Park', 'Joan Park'],
+  },
+  "LawrenceSusan2": {
+      after: false,
+      names: ['Lawrence Lee', 'Susan Lee'],
+  },
+  "Jean1": {
+      after: false,
+      names: ['Jean Rhee'],
+  },
+  "HWJina2": {
+      after: false,
+      names: ['HW Chun', 'Jina Chun'],
+  },
+  "YongDorthy2": {
+      after: false,
+      names: ['Yong Chun', 'Dorthy Chun'],
+  },
+  "Melanie1": {
+      after: false,
+      names: ['Melanie Lee'],
+  },
+  "JinHyunAh2": {
+      after: false,
+      names: ['Jin Lim', 'Hyun Ah Lim'],
+  },
+  "DaeUnyoung2": {
+      after: false,
+      names: ['Dae Yu', 'Unyoung Yu'],
+  },
+  "CharlieJinSoo2": {
+      after: false,
+      names: ['Charlie Cho', 'Jin Soo Cho'],
+  },
+  "CalebJungsug2": {
+      after: false,
+      names: ['Caleh Suh', 'Jungsug Suh'],
+  },
+  "HanSun2": {
+      after: false,
+      names: ['Han Kim', 'Sun Kim'],
+  },
 };
