@@ -17,14 +17,13 @@ $(document).ready(function () {
 
                 $('#alert-wrapper2').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-                    // TODO: CLEANUPPPPPP no cors
                     fetch("https://script.google.com/macros/s/AKfycbxwR6mGxchaTK0dygsO0sod3-SuAWcjIaH2yFqCnmADOUk7uzWMSkx0OFaxZfht6WABaQ/exec?" + data, {
                         method: 'POST',
                         body: data,
                         headers: {
                             'Content-Type': 'text/plain;charset=utf-8',
                         },
-                        mode: 'no-cors'
+                        // mode: 'no-cors'
                     })
                     .then(function (data) {
                         if (data.ok) {
