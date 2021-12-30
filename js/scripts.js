@@ -17,7 +17,7 @@ $(document).ready(function () {
 
                 $('#alert-wrapper2').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-                    fetch("https://script.google.com/macros/s/AKfycbxwR6mGxchaTK0dygsO0sod3-SuAWcjIaH2yFqCnmADOUk7uzWMSkx0OFaxZfht6WABaQ/exec?" + data, {
+                    fetch("https://script.google.com/macros/s/AKfycbxqUPcSM1c1Al6eEJK9FBNgPnnrrWlC7cEWeaeJ4NT6kjYOYtuJtDzKHEKW7YDtZUU0lA/exec?" + data, {
                         method: 'POST',
                         body: data,
                         headers: {
@@ -612,6 +612,14 @@ var MD5 = function (string) {
 };
 
 var groups = {
+  "Misook1": {
+      after: false,
+      names: ['Misook'],
+  },
+  "Han2": {
+      after: false,
+      names: ['Kyu', '작은엄마'],
+  },
   "Jenny1": {
       after: true,
       names: ['Jenny Han'],
