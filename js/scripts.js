@@ -10,6 +10,9 @@ $(document).ready(function () {
             var group = groups[$('#invite_code').val()]
             $('#rsvp-name').html('Hello ' + group.names.join(' and ') + '!');
             $('#rsvp-section').html(rsvp_markup(group.names, group.after));
+            if (group.after) {
+                $('#playlist').html('<div class="col-md-6 col-md-offset-3"> <h3>Add your after party music of your choice here!</h3> <iframe src="https://open.spotify.com/embed/playlist/5YebXiRYJPauszk9a0SJ0w?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> </div>');
+            }
 
             $('#rsvp-form').on('submit', function (e) {
                 e.preventDefault();
@@ -177,30 +180,6 @@ $(document).ready(function () {
 
     });
 
-    /********************** Social Share buttons ***********************/
-    // var share_bar = document.getElementsByClassName('share-bar');
-    // var po = document.createElement('script');
-    // po.type = 'text/javascript';
-    // po.async = true;
-    // po.src = 'https://apis.google.com/js/platform.js';
-    // var s = document.getElementsByTagName('script')[0];
-    // s.parentNode.insertBefore(po, s);
-
-    // for (var i = 0; i < share_bar.length; i++) {
-        // var html = '<iframe allowtransparency="true" frameborder="0" scrolling="no"' +
-            // 'src="https://platform.twitter.com/widgets/tweet_button.html?url=' + encodeURIComponent(window.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;via=ramswarooppatra&amp;hashtags=ramandantara&amp;count=horizontal"' +
-            // 'style="width:105px; height:21px;">' +
-            // '</iframe>' +
-
-            // '<iframe src="//www.facebook.com/plugins/like.php?href=' + encodeURIComponent(window.location) + '&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21&amp;appId=101094500229731&amp;width=150" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>' +
-
-            // '<div class="g-plusone" data-size="medium"></div>';
-
-        // share_bar[i].innerHTML = html;
-        // share_bar[i].style.display = 'inline-block';
-    // }
-        // // '<iframe src="https://plusone.google.com/_/+1/fastbutton?bsv&amp;size=medium&amp;url=' + encodeURIComponent(window.location) + '" allowtransparency="true" frameborder="0" scrolling="no" title="+1" style="width:105px; height:21px;"></iframe>';
-
 
     /********************** Embed youtube video *********************/
     // $('.player').YTPlayer();
@@ -225,55 +204,28 @@ $(document).ready(function () {
         },
         data: {
             // Event title
-            title: "Ram and Antara's Wedding",
+            title: "Jay and Sammy's Wedding",
 
             // Event start date
-            start: new Date('Nov 27, 2017 10:00'),
+            start: new Date('Apr 23, 2022 10:00'),
 
             // Event duration (IN MINUTES)
-            // duration: 120,
+            duration: 300,
 
             // You can also choose to set an end time
             // If an end time is set, this will take precedence over duration
-            end: new Date('Nov 29, 2017 00:00'),
+            // end: new Date('Nov 29, 2017 00:00'),
 
             // Event Address
-            address: 'ITC Fortune Park Hotel, Kolkata',
+            // address: 'ITC Fortune Park Hotel, Kolkata',
 
             // Event Description
-            description: "We can't wait to see you on our big day. For any queries or issues, please contact Mr. Amit Roy at +91 9876543210."
+            description: "We can't wait to see you on our big day. For any queries or issues, please contact Jay Han at jayjhan8@gmail.com"
         }
     });
 
     $('#add-to-cal').html(myCalendar);
 
-
-    // $('#rsvp-form').on('submit', function (e) {
-        // e.preventDefault();
-        // var data = $(this).serialize();
-
-        // $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
-
-        // if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
-            // && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
-            // $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
-        // } else {
-            // $.post('https://script.google.com/macros/s/AKfycbzUqz44wOat0DiGjRV1gUnRf4HRqlRARWggjvHKWvqniP7eVDG-/exec', data)
-                // .done(function (data) {
-                    // console.log(data);
-                    // if (data.result === "error") {
-                        // $('#alert-wrapper').html(alert_markup('danger', data.message));
-                    // } else {
-                        // $('#alert-wrapper').html('');
-                        // $('#rsvp-modal').modal('show');
-                    // }
-                // })
-                // .fail(function (data) {
-                    // console.log(data);
-                    // $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
-                // });
-        // }
-    // });
 });
 
 
@@ -384,7 +336,7 @@ function rsvp_markup(groupNames, afterParty) {
 
     var tableHeaders = '<tr class="table-header"> <th class="col-1">Name</th> <th class="col-2">Will you be joining us on 4/23/22?</th> <th class="col-3">Are you fully vaccinated against COVID-19?</th> <th class="col-4">Will you have received your COVID-19 booster by 4/23/22?</th> <th class="col-5 ' + afterPartyClass + '">Will you be joining us for the <a href="#after-party-modal" data-target="#after-party-modal" data-toggle="modal">after party?</a></th> <th class="col-6">Do you have any dietary restrictions?</th> </tr>';
 
-    return '<div class="row"> <div class="col-md-12"> <h3>What are you waiting for? </h3> <form class="gform" id="rsvp-form" class="rsvp-form" action="" method="POST"> <table class="responsive-table">' + tableHeaders  + groupNameMarkUp + '</table> <div class="row"> <div class="col-md-12" id="alert-wrapper2"> </div> </div> <button class="btn-fill rsvp-btn"> Let\'s go!</button> </form> </div> </div>';
+    return '<div class="row"> <div class="col-md-12"> <h3>What are you waiting for? </h3> <form class="gform" id="rsvp-form" class="rsvp-form" action="" method="POST"> <table class="responsive-table">' + tableHeaders  + groupNameMarkUp + '</table> <div class="row"> <div class="col-md-12" id="alert-wrapper2"> </div> </div> <button class="btn-fill rsvp-btn"> Let\'s go!</button> </form> </div> </div> <div id="playlist" class="row"> </div> ';
 }
 
 // alert_markup
