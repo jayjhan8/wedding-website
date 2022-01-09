@@ -181,19 +181,19 @@ $(document).ready(function () {
     });
 
 
+    /********************** Maps *********************/
+    $('.map-overlay').click(function () {
+        console.log('yoo!');
+        $('.map-overlay').css({
+            "pointer-events": "none",
+        });
+        // $(this).toggleClass('active');
+        // $('.header-nav').toggleClass('open');
+        // event.preventDefault();
+    });
     /********************** Embed youtube video *********************/
     // $('.player').YTPlayer();
 
-
-    /********************** Toggle Map Content **********************/
-    $('#btn-show-map').click(function () {
-        $('#map-content').toggleClass('toggle-map-content');
-        $('#btn-show-content').toggleClass('toggle-map-content');
-    });
-    $('#btn-show-content').click(function () {
-        $('#map-content').toggleClass('toggle-map-content');
-        $('#btn-show-content').toggleClass('toggle-map-content');
-    });
 
     /********************** Add to Calendar **********************/
     var myCalendar = createCalendar({
