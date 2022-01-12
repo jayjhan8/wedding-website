@@ -647,10 +647,8 @@ Features-stack
 
 #map {
   .map-overlay {
-    // pointer-events: none;
     top:640px;  /* your iframe height */
     margin-top:-640px;  /* your iframe height */
-    // position: absolute !important;
     z-index:100 !important;
   }
 

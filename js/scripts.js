@@ -183,13 +183,9 @@ $(document).ready(function () {
 
     /********************** Maps *********************/
     $('.map-overlay').click(function () {
-        console.log('yoo!');
         $('.map-overlay').css({
             "pointer-events": "none",
         });
-        // $(this).toggleClass('active');
-        // $('.header-nav').toggleClass('open');
-        // event.preventDefault();
     });
     /********************** Embed youtube video *********************/
     // $('.player').YTPlayer();
