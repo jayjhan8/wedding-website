@@ -330,9 +330,9 @@ function rsvp_markup(groupNames, afterParty) {
         afterPartyClass = '';
     }
 
-    var tableHeaders = '<tr class="table-header"> <th class="col-1">Name</th> <th class="col-2">Will you be joining us on 4/23/22?</th> <th class="col-3">Are you fully vaccinated against COVID-19? Upload below</th> <th class="col-4">Will you have received your COVID-19 booster by 4/23/22?</th> <th class="col-5 ' + afterPartyClass + '">Will you be joining us for the <a href="#after-party-modal" data-target="#after-party-modal" data-toggle="modal">after party?</a></th> <th class="col-6">Do you have any dietary restrictions?</th> </tr>';
+    var tableHeaders = '<tr class="table-header"> <th class="col-1">Name</th> <th class="col-2">Will you be joining us on 4/23/22?</th> <th class="col-3">Are you fully vaccinated against COVID-19? <a href="https://forms.gle/hKt8W2w1aDpaBY7fA"><b>Upload here</b></a></th> <th class="col-4">Will you have received your COVID-19 booster by 4/23/22?</th> <th class="col-5 ' + afterPartyClass + '">Will you be joining us for the <a href="#after-party-modal" data-target="#after-party-modal" data-toggle="modal">after party?</a></th> <th class="col-6">Do you have any dietary restrictions?</th> </tr>';
 
-	return '<div class="row"> <div class="col-md-12"> <h3>What are you waiting for? </h3> <form class="gform" id="rsvp-form" class="rsvp-form" action="" method="POST"> <table class="responsive-table">' + tableHeaders  + groupNameMarkUp + '</table> <div class="row"> <div class="col-md-12" id="alert-wrapper2"> </div> </div> <em><p><a href="https://forms.gle/hKt8W2w1aDpaBY7fA"><b>REQUIRED: Click here to upload your vaccines!</b></a></p></em> <button class="btn-fill rsvp-btn"> Let\'s go!</button> </form> </div> </div> <div id="playlist" class="row"> </div> ';
+    return '<div class="row"> <div class="col-md-12"> <h3>What are you waiting for? </h3> <form class="gform" id="rsvp-form" class="rsvp-form" action="" method="POST"> <table class="responsive-table">' + tableHeaders  + groupNameMarkUp + '</table> <div class="row"> <div class="col-md-12" id="alert-wrapper2"> </div> </div> <em><p><a href="https://forms.gle/hKt8W2w1aDpaBY7fA"><b>REQUIRED: Click here to upload your vaccines!</b></a></p></em> <button class="btn-fill rsvp-btn"> Let\'s go!</button> </form> </div> </div> <div id="playlist" class="row"> </div> ';
 }
 
 // alert_markup
