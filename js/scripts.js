@@ -812,4 +812,48 @@ var groups = {
       after: false,
       names: ['Han Kim', 'Sun Kim'],
   },
+  "DrewJooyoung2": {
+      after: true,
+      names: ['Drew Cho', 'Jooyoung'],
+  },
+  "RubyRenjay2": {
+      after: true,
+      names: ['Ruby Yau', 'Renjay Liu'],
+  },
+  "Joomi1": {
+      after: true,
+      names: ['Joomi'],
+  },
+  "Leah1": {
+      after: true,
+      names: ['Leah Spaulding'],
+  },
+  "Jin1": {
+      after: true,
+      names: ['Jin Kim'],
+  },
+  "Enxhi1": {
+      after: true,
+      names: ['Enxhi Merpeza'],
+  },
+  "Charles1": {
+      after: true,
+      names: ['Charles Kim'],
+  },
+  "Brian1": {
+      after: false,
+      names: ['Brian Kim'],
+  },
+  "Josh1": {
+      after: true,
+      names: ['Josh Chung'],
+  },
+  "Chung1": {
+      after: true,
+      names: ['Chung Winchip'],
+  },
+  "Suyoon1": {
+      after: true,
+      names: ['Suyoon Lee'],
+  },
 };
