@@ -821,7 +821,7 @@ var groups = {
       names: ['Ruby Yau', 'Renjay Liu'],
   },
   "Joomi1": {
-      after: true,
+      after: false,
       names: ['Joomi'],
   },
   "Leah1": {
