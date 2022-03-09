@@ -860,4 +860,20 @@ var groups = {
       after: true,
       names: ['Aaron Chang'],
   },
+  "Rosalie1": {
+      after: true,
+      names: ['Rosalie Shyu'],
+  },
+  "JoshDaphne2": {
+      after: true,
+      names: ['Josh Yee', 'Daphne Li'],
+  },
+  "Ayo1": {
+      after: true,
+      names: ['Ayo Akinokun'],
+  },
+  "Deanna1": {
+      after: true,
+      names: ['Deanna Tran'],
+  },
 };
