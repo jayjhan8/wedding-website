@@ -872,6 +872,10 @@ var groups = {
       after: true,
       names: ['Ayo Akinokun'],
   },
+  "Eric1": {
+      after: true,
+      names: ['Eric Lee'],
+  },
   "Deanna1": {
       after: true,
       names: ['Deanna Tran'],
