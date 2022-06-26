@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    $('#wedding-photos').on('submit', function (e) {
+      console.log('hello');
+    });
+
     /********************** RSVP **********************/
     $('#code-form').on('submit', function (e) {
         e.preventDefault();
@@ -255,63 +259,7 @@ function initBBSRMap() {
         map: map
     });
 }
-// <div class="row">
-  // <div class="col-md-12">
-    // <h3>What are you waiting for? </h3>
-    // <form class="gform" id="rsvp-form" class="rsvp-form" action="" method="POST">
-      // <table class="responsive-table">
-        // <tr class='table-header'>
-          // <th class="col-1">Name</th>
-          // <th class="col-2">Will you be joining us on 4/23/22?</th>
-          // <th class="col-3">Are you fully vaccinated against COVID-19?</th>
-          // <th class="col-4">Will you have received your COVID-19 booster by 4/23/22?</th>
-          // <th class="col-5">Will you be joining us for the after party?</th>
-          // <th class="col-6">Do you have any dietary restrictions?</th>
-        // </tr>
-        // <tr >
-          // <td class="col-1">
-            // <input name="name" class="" placeholder="Your name" value="default" required>
-          // </td>
-          // <td class="col-2">
-              // <select name="wedding-rsvp">
-                  // <option value="">---</option>
-                  // <option value="yes">Yes</option>
-                  // <option value="no">No</option>
-              // </select>
-          // </td>
-          // <td class="col-3">
-              // <select name="vaccinated">
-                  // <option value="">---</option>
-                  // <option value="yes">Yes</option>
-                  // <option value="no">No</option>
-              // </select>
-          // </td>
-          // <td class="col-4">
-              // <select name="booster">
-                  // <option value="">---</option>
-                  // <option value="yes">Yes</option>
-                  // <option value="no">No</option>
-              // </select>
-          // </td>
-          // <td class="col-5">
-              // <select name="after-party">
-                  // <option value="">---</option>
-                  // <option value="yes">Yes</option>
-                  // <option value="no">No</option>
-              // </select>
-          // </td>
-          // <td class="col-6">
-            // <input name="diet" type="text" class="" placeholder="None">
-          // </td>
-        // </tr>
-      // </table>
-      // <div class="row"> 
-        // <div class="col-md-12" id="alert-wrapper2"> </div>
-      // </div> 
-      // <button class="btn-fill rsvp-btn"> Let's go!</button>
-    // </form> 
-  // </div> 
-// </div>
+
 function rsvp_name_dropdown_table_row_markup(name, shouldInviteToAfter) {
     var afterPartyClass = 'hidden';
     if (shouldInviteToAfter) {

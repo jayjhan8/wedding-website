@@ -262,11 +262,12 @@ Hero
   background-size: cover;
   position: relative;
 
-  /*.rsvp-btn {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-  }*/
+  .photo-btn {
+      padding: 15px 0;
+      border-radius: 3px;
+      width: 40%;
+      font-size: 20px;
+  }
   .down-arrow a {
     color: $txt-light;
   }
